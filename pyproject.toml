@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jdi"
+version = "0.1.0"
+description = "Offline Raspberry Pi voice control for LIFX lights"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "PyYAML>=6.0.2,<7",
+  "gpiozero>=2.0,<3",
+  "lifxlan>=1.2.9,<2",
+  "requests>=2.32.0,<3",
+  "sounddevice>=0.4.6,<1",
+  "vosk>=0.3.44,<0.4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2,<2",
+  "pytest>=8.3,<9",
+  "ruff>=0.11,<0.12",
+]
+
+[project.scripts]
+jdi = "jdi_voice.cli:main"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

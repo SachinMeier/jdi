@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JDI</string>
+    <string name="main_subtitle">Dedicated voice control for LIFX with offline speech recognition.</string>
+    <string name="start_service">Start Voice Service</string>
+    <string name="stop_service">Stop Voice Service</string>
+    <string name="download_model">Download Offline Model</string>
+    <string name="edit_config">Edit Config</string>
+    <string name="disable_battery_optimizations">Disable Battery Optimizations</string>
+    <string name="hold_to_talk">Hold To Talk</string>
+    <string name="status_service_stopped">Service: stopped</string>
+    <string name="status_model_unknown">Model: unknown</string>
+    <string name="status_listening_idle">Listening mode: idle</string>
+    <string name="status_last_transcript_empty">Last transcript: none</string>
+    <string name="status_last_action_empty">Last action: none</string>
+    <string name="config_title">Voice Config</string>
+    <string name="config_hint">Edit the JSON configuration below. Save will validate the config and overwrite the private app config file.</string>
+    <string name="save_config">Save Config</string>
+    <string name="restore_default_config">Restore Default Config</string>
+</resources>

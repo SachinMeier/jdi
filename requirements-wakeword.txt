@@ -1,0 +1,8 @@
+# Optional wake-word stack for macOS and Linux environments where openWakeWord's
+# dependency resolution works normally.
+onnxruntime>=1.16,<2
+scipy>=1.16,<2
+scikit-learn>=1.7,<2
+tqdm>=4.67,<5
+openwakeword==0.6.0
+

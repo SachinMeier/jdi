@@ -1,0 +1,157 @@
+{
+  "audio": {
+    "sampleRateHz": 16000,
+    "frameSize": 1280,
+    "commandTimeoutMs": 4000,
+    "postWakeDelayMs": 300
+  },
+  "recognition": {
+    "modelDownloadUrl": "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip",
+    "modelDirectoryName": "vosk-model-small-en-us-0.15"
+  },
+  "wakeWord": {
+    "enabled": true,
+    "phrases": [
+      "hey jarvis"
+    ],
+    "debounceMs": 1200
+  },
+  "lifx": {
+    "defaultTransport": "lan",
+    "httpToken": "",
+    "httpBaseUrl": "https://api.lifx.com/v1",
+    "lanDiscoveryTimeoutMs": 1200,
+    "lanCacheTtlMs": 30000
+  },
+  "lights": {
+    "bedroom": {
+      "label": "Bedroom1"
+    },
+    "kitchen_counter": {
+      "label": "Kitchen Counter"
+    },
+    "foyer": {
+      "label": "Foyer Ceiling"
+    }
+  },
+  "groups": {
+    "common_area": [
+      "kitchen_counter",
+      "foyer"
+    ]
+  },
+  "commands": [
+    {
+      "phrases": [
+        "turn all lights on",
+        "all lights on"
+      ],
+      "action": {
+        "type": "power",
+        "target": "all",
+        "value": "on",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn all lights off",
+        "all lights off"
+      ],
+      "action": {
+        "type": "power",
+        "target": "all",
+        "value": "off",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn bedroom on"
+      ],
+      "action": {
+        "type": "power",
+        "target": "bedroom",
+        "value": "on",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn bedroom off"
+      ],
+      "action": {
+        "type": "power",
+        "target": "bedroom",
+        "value": "off",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn kitchen on",
+        "turn kitchen counter on"
+      ],
+      "action": {
+        "type": "power",
+        "target": "kitchen_counter",
+        "value": "on",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn kitchen off",
+        "turn kitchen counter off"
+      ],
+      "action": {
+        "type": "power",
+        "target": "kitchen_counter",
+        "value": "off",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn foyer on"
+      ],
+      "action": {
+        "type": "power",
+        "target": "foyer",
+        "value": "on",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "turn foyer off"
+      ],
+      "action": {
+        "type": "power",
+        "target": "foyer",
+        "value": "off",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    },
+    {
+      "phrases": [
+        "toggle common area"
+      ],
+      "action": {
+        "type": "power",
+        "target": "common_area",
+        "value": "toggle",
+        "transport": "lan",
+        "durationMs": 250
+      }
+    }
+  ]
+}

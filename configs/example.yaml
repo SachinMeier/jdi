@@ -1,0 +1,149 @@
+audio:
+  sample_rate_hz: 16000
+  block_size_frames: 1280
+  channels: 1
+  device: null
+  command_timeout_seconds: 4.0
+  post_wake_delay_seconds: 0.3
+
+recognition:
+  model_path: ../models/vosk-model-small-en-us-0.15
+  allow_unknown: true
+
+wake_word:
+  enabled: false
+  model_names:
+    - hey jarvis
+  threshold: 0.5
+  patience_frames: 1
+  debounce_seconds: 1.2
+  vad_threshold: 0.35
+  enable_speex_noise_suppression: false
+  inference_framework: onnx
+  custom_verifier_models: {}
+  custom_verifier_threshold: 0.3
+
+push_to_talk:
+  enabled: false
+  mode: gpio
+  gpio_pin: 17
+  hold_to_listen: true
+  pull_up: true
+  bounce_time_seconds: 0.05
+  keyboard_key: space
+
+lifx:
+  default_transport: lan
+  lan:
+    discovery_cache_seconds: 30
+    verbose: false
+  http:
+    enabled: true
+    base_url: https://api.lifx.com/v1
+    token_env_var: LIFX_TOKEN
+
+lights:
+  bedroom_main:
+    label: Bedroom Main
+  office_lamp:
+    label: Office Lamp
+  hallway:
+    label: Hallway
+
+scenes:
+  movie_time:
+    description: Warm and dim for movies.
+    steps:
+      - target: bedroom_main
+        power: on
+        brightness_pct: 18
+        kelvin: 2700
+        duration_seconds: 1.0
+      - target: office_lamp
+        power: off
+        duration_seconds: 1.0
+      - target: hallway
+        power: off
+        duration_seconds: 1.0
+  cleanup:
+    description: Bright neutral light in the bedroom.
+    steps:
+      - target: bedroom_main
+        power: on
+        brightness_pct: 100
+        kelvin: 4000
+        duration_seconds: 0.8
+      - target: office_lamp
+        power: on
+        brightness_pct: 100
+        kelvin: 4000
+        duration_seconds: 0.8
+
+commands:
+  - phrases:
+      - turn bedroom lights on
+      - bedroom lights on
+    description: Turn the bedroom lights on over LAN.
+    action:
+      type: power
+      target: bedroom_main
+      value: on
+      transport: lan
+      duration_seconds: 0.4
+
+  - phrases:
+      - turn bedroom lights off
+      - bedroom lights off
+    description: Turn the bedroom lights off over LAN.
+    action:
+      type: power
+      target: bedroom_main
+      value: off
+      transport: lan
+      duration_seconds: 0.4
+
+  - phrases:
+      - turn all lights on
+      - all lights on
+    description: Turn every LIFX light on over LAN.
+    action:
+      type: power
+      target: all
+      value: on
+      transport: lan
+      duration_seconds: 0.6
+
+  - phrases:
+      - turn all lights off
+      - all lights off
+    description: Turn every LIFX light off over LAN.
+    action:
+      type: power
+      target: all
+      value: off
+      transport: lan
+      duration_seconds: 0.6
+
+  - phrases:
+      - activate movie time
+      - movie time
+    description: Apply the local movie scene.
+    action:
+      type: local_scene
+      scene: movie_time
+
+  - phrases:
+      - activate cleanup scene
+      - cleanup scene
+    description: Apply the local cleanup scene.
+    action:
+      type: local_scene
+      scene: cleanup
+
+  - phrases:
+      - activate sunset cloud scene
+    description: Activate a scene that already exists in the LIFX cloud.
+    action:
+      type: http_scene
+      scene_id: REPLACE_WITH_LIFX_SCENE_UUID
+      duration_seconds: 1.0

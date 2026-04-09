@@ -1,0 +1,16 @@
+[Unit]
+Description=JDI LIFX Controller
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/jdi
+EnvironmentFile=-/etc/jdi.env
+ExecStart=/home/pi/jdi/.venv/bin/jdi --config /home/pi/jdi/configs/home.yaml run
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
